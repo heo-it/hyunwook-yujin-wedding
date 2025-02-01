@@ -1,0 +1,24 @@
+---
+import dayjs from "dayjs";
+import { getDatesGroupedByWeek } from "@/lib/calendar";
+import CalendarHeader from "./CalendarHeader.astro";
+import CalendarTable from "./CalendarTable.astro";
+
+const { dueDate } = Astro.props;
+
+const weeklyDateGroups = getDatesGroupedByWeek(dueDate);
+const formattedDay = dayjs(dueDate).format("YYYY.MM.DD");
+const formattedTime = dayjs(dueDate).format("dddd A h시");
+const remindDate = dayjs(dueDate).diff(dayjs(), "day");
+---
+
+<div
+  class="flex flex-col py-12 mb-20 bg-neutral-50 border-y border-neutral-100 text-stone-500"
+>
+  <CalendarHeader formattedDay={formattedDay} formattedTime={formattedTime} />
+  <CalendarTable weeklyDateGroups={weeklyDateGroups} dueDate={dueDate} />
+  <p class="text-center">
+    현욱 ❤️ 유진의 결혼식이&nbsp;
+    <span class="text-red-400">{remindDate}일</span> 남았습니다.
+  </p>
+</div>

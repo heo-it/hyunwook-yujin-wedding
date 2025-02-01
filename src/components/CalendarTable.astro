@@ -1,0 +1,56 @@
+---
+import dayjs from "dayjs";
+
+interface Props {
+  weeklyDateGroups: dayjs.Dayjs[][];
+  dueDate: string;
+}
+
+const { weeklyDateGroups, dueDate } = Astro.props;
+---
+
+<div class="my-8 mx-11 py-8 px-2 border-y border-neutral-200">
+  <table class="w-full leading-9 text-sm">
+    <thead>
+      <tr>
+        <th class="pb-2 text-red-400">일</th>
+        <th class="pb-2">월</th>
+        <th class="pb-2">화</th>
+        <th class="pb-2">수</th>
+        <th class="pb-2">목</th>
+        <th class="pb-2">금</th>
+        <th class="pb-2">토</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        weeklyDateGroups.map((week, weekIndex) => (
+          <tr>
+            {week.map((date, dateIndex) => {
+              const isSameMonth = date.month() === dayjs(dueDate).month();
+              const isSunday = dayjs(date).day() === 0;
+              const isDueDate = dayjs(
+                dayjs(dueDate).format("YYYY.MM.DD")
+              ).isSame(date);
+              const displayDate = isSameMonth ? date.date() : "";
+
+              return (
+                <td
+                  class={`relative ${isSunday ? "text-red-400" : ""} text-center`}
+                >
+                  {isDueDate ? (
+                    <div class="absolute inset-0 flex justify-center items-center size-[30px] bg-stone-400 rounded-full m-auto text-stone-50">
+                      {displayDate}
+                    </div>
+                  ) : (
+                    displayDate
+                  )}
+                </td>
+              );
+            })}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
