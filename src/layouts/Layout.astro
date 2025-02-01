@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import { LINK } from "@/constants/link";
 ---
 
 <!doctype html>
@@ -19,6 +20,7 @@ import "@/styles/global.css";
   </head>
   <body>
     <slot />
+    <script type="text/javascript" src=`${LINK.NAVER_MAP}`></script>
   </body>
 </html>
 
