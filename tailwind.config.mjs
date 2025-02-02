@@ -8,6 +8,30 @@ export default {
       Pretendard: ["Pretendard Variable"],
       AlexBrush: ["Alex Brush", "cursive"],
     },
+    backgroundImage: {
+      "fade-to-white": "linear-gradient(hsla(0, 0%, 100%, 0), #fff)",
+    },
+    keyframes: {
+      blink: {
+        "0%": {
+          opacity: "1",
+          transform: "rotate(180deg) translate3d(0,-2px,0)",
+        },
+
+        "50%": {
+          opacity: ".2",
+          transform: " rotate(180deg) translate3d(0,2px,0)",
+        },
+
+        "100%": {
+          opacity: "1",
+          transform: "rotate(180deg) translate3d(0,-2px,0)",
+        },
+      },
+    },
+    animation: {
+      blink: "blink 1.3s infinite",
+    },
   },
   plugins: [],
 };

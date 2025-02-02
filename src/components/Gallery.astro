@@ -1,45 +1,95 @@
 ---
 import type { ImageMetadata } from "astro";
 import { Image, getImage } from "astro:assets";
+import ChevronDownIcon from "@/assets/ic_chevrondn_line_24.svg";
 
 const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/*/*");
 const imagePaths = Object.keys(images).filter((imagePath) => {
   return imagePath.startsWith(`/src/assets/gallery/`);
 });
+
+const getImageInfo = async (imagePath: string) => {
+  const image = images[imagePath]();
+  const optimizedImage = await getImage({ src: image });
+  return {
+    path: imagePath,
+    image,
+    optimizedImage,
+    width: optimizedImage.attributes.width,
+    height: optimizedImage.attributes.height,
+    isPortrait:
+      optimizedImage.attributes.width < optimizedImage.attributes.height,
+  };
+};
+
+const generate2DArray = (arr: any[], columns: number) => {
+  const result = [];
+  const rows = Math.ceil(arr.length / columns);
+
+  for (let col = 0; col < columns; col++) {
+    const column = [];
+    for (let row = 0; row < rows; row++) {
+      const index = row * columns + col;
+      if (index < arr.length) {
+        column.push(arr[index]);
+      }
+    }
+    result.push(column);
+  }
+
+  return result;
+};
+
+const imageInfos = await Promise.all(imagePaths.map(getImageInfo));
+const columns = 3;
+const imageGrid = generate2DArray(imageInfos, columns);
 ---
 
-<section class="flex flex-col items-center justify-center gap-1 py-10">
+<section class="flex flex-col items-center justify-center py-12 mb-8">
+  <p class="mb-8">🤍</p>
   <div
-    id="gallery"
-    class="container mx-auto grid grid-cols-3 gap-2 md:grid-cols-3"
+    id="gallery-wrapper"
+    class="relative h-screen overflow-hidden transition-[height] duration-200 ease-in-out"
   >
-    {
-      imagePaths.map(async (imagePath, index) => {
-        let image = images[imagePath]();
-        let optimizedImage = await getImage({
-          src: image,
-        });
-
-        return (
-          <a
-            href={optimizedImage.src}
-            data-pswp-width={optimizedImage.attributes.width}
-            data-pswp-height={optimizedImage.attributes.height}
-            target="_blank"
-            class="border-primary hover:border-secondary overflow-hidden rounded-md border-[1px]"
-          >
-            <Image
-              src={image}
-              alt={`이미지 ${index}`}
-              height={350}
-              class={
-                "aspect-[2/3] w-full object-cover transition duration-300 ease-in-out"
-              }
-            />
-          </a>
-        );
-      })
-    }
+    <div
+      id="gallery"
+      class="container mx-auto grid grid-cols-3 gap-2 md:grid-cols-3"
+    >
+      {
+        imageGrid.map((column, columnIndex) => (
+          <div class="flex flex-col gap-2">
+            {column.map((imageInfo) => (
+              <a
+                href={imageInfo.optimizedImage.src}
+                data-pswp-width={imageInfo.width}
+                data-pswp-height={imageInfo.height}
+                target="_blank"
+                class="overflow-hidden"
+              >
+                <Image
+                  src={imageInfo.image}
+                  alt={`이미지 ${imageInfo.path}`}
+                  class={`w-full object-cover transition duration-300 ease-in-out ${
+                    imageInfo.isPortrait ? "aspect-[2/3]" : "aspect-[3/2]"
+                  }`}
+                />
+              </a>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+    <div
+      id="show-more-button-wrapper"
+      class="absolute bottom-[0] w-screen h-[120px] bg-fade-to-white"
+    >
+      <button
+        id="show-more-button"
+        class="absolute animate-blink bg-transparent bottom-[10px] cursor-pointer flex left-[calc(50%-12px)] -translate-x-full opacity-100"
+      >
+        <img src={ChevronDownIcon.src} width="32" height="32" />
+      </button>
+    </div>
   </div>
 </section>
 
@@ -54,4 +104,17 @@ const imagePaths = Object.keys(images).filter((imagePath) => {
   });
 
   lightbox.init();
+</script>
+
+<script>
+  const showMoreButton = document.getElementById("show-more-button");
+  const showMoreButtonWrapper = document.getElementById(
+    "show-more-button-wrapper"
+  );
+  const galleryWrapper = document.getElementById("gallery-wrapper");
+
+  showMoreButton?.addEventListener("click", () => {
+    galleryWrapper?.setAttribute("style", "overflow: unset; height: auto;");
+    showMoreButtonWrapper?.setAttribute("style", "display: none;");
+  });
 </script>
