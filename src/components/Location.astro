@@ -1,0 +1,48 @@
+---
+import NaverMap from "@/assets/navermap_Icon.png";
+import KakaoMap from "@/assets/kakaomap_Icon.png";
+import TMap from "@/assets/tmap_Icon.svg";
+import { LINK, LOCATION } from "@/constants/constants";
+import { Map } from "./Map";
+import NavigationButton from "./NavigationButton.astro";
+---
+
+<div class="flex flex-col py-10">
+  <p class="text-[17px] text-center text-stone-900 mb-8">오시는 길</p>
+  <Map
+    client:only="react"
+    latitude={LOCATION.LATITUDE}
+    longitude={LOCATION.LONGITUDE}
+  />
+  <div class="px-8 font-Pretendard text-sm">
+    <div class="flex flex-col gap-4 border-b pb-9">
+      <div class="flex flex-col gap-1">
+        <p>네비게이션</p>
+        <p class="text-stone-400">
+          원하시는 앱을 선택하시면 길안내가 시작됩니다.
+        </p>
+      </div>
+      <div class="flex gap-2">
+        <NavigationButton
+          title="네이버 지도"
+          src={NaverMap.src}
+          alt="Naver Map"
+          link={LINK.NAVER_MAP_APP}
+        />
+        <NavigationButton
+          title="카카오맵"
+          src={KakaoMap.src}
+          alt="Kakao Map"
+          link={LINK.KAKAO_MAP_APP}
+        />
+        <NavigationButton
+          title="티맵"
+          src={TMap.src}
+          alt="T Map"
+          link={LINK.T_MAP_APP}
+        />
+      </div>
+    </div>
+    {/** TODO - 오시는 길 설명 추가 */}
+  </div>
+</div>
