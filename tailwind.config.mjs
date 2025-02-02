@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
-      CrimsonPro: ["Crimson Pro;"],
+      CrimsonPro: ["Crimson Pro", "serif"],
+      Pretendard: ["Pretendard Variable"],
     },
   },
   plugins: [],
