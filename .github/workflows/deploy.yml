@@ -3,7 +3,7 @@ name: Deploy Website
 on:
   push:
     branches:
-      - develop # 배포 테스트 후 master로 교체
+      - develop
 
 jobs:
   deploy:
