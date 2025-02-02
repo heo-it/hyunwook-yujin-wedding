@@ -1,9 +1,7 @@
 @font-face {
-  font-family: "RIDIBatang";
-  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
+  font-family: "SUIT Variable";
+  font-weight: 100 900;
+  src: url("./src/assets/fonts/SUIT-Variable.woff2") format("woff2-variations");
 }
 
 @font-face {
