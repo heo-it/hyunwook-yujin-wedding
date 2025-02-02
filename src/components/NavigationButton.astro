@@ -1,0 +1,11 @@
+---
+const { src, alt, link, title } = Astro.props;
+---
+
+<button
+  class="flex items-center justify-center gap-2 h-[40px] grow shrink basis-0 border border-gray-100 rounded-lg"
+  on-click={() => window.open(link, "_blank")}
+>
+  <img src={src} alt={alt} width={16} height={16} />
+  <span>{title}</span>
+</button>
