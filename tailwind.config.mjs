@@ -6,6 +6,7 @@ export default {
     fontFamily: {
       CrimsonPro: ["Crimson Pro", "serif"],
       Pretendard: ["Pretendard Variable"],
+      AlexBrush: ["Alex Brush", "cursive"],
     },
   },
   plugins: [],

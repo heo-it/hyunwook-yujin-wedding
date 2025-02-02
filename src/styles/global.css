@@ -14,3 +14,12 @@
   src: url("https://dbcel3f97fjt1.cloudfront.net/assets/fonts/PretendardVariable.woff2")
     format("woff2-variations");
 }
+
+:root {
+  --color-primary: #1f1f1f;
+  --color-gray-900: #191919;
+  --color-gray-700: #4c4c4c;
+  --color-gray-500: #979ca1;
+  --color-secondary: #595959;
+  --color-point: #e75e5e;
+}
