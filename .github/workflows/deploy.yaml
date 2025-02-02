@@ -16,8 +16,8 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-    - name: Set staging environment varibales
+          aws-region: ap-northeast-2
+    - name: Set staging environment variables
         run: |
           echo "PUBLIC_AI_NAVER_API_CLIENT_ID=${{ vars.PUBLIC_AI_NAVER_API_CLIENT_ID }}" >> .env
           echo "PUBLIC_T_MAP_APP_KEY=${{ vars.PUBLIC_T_MAP_APP_KEY }}" >> .env
