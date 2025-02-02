@@ -1,10 +1,9 @@
 ---
-const { formattedDay, formattedTime } = Astro.props;
+const { month } = Astro.props;
 ---
 
 <div class="flex flex-col justify-center text-center">
-  <p class="font-CrimsonPro text-2xl text-stone-600 mb-1">
-    {formattedDay}
+  <p class="font-CrimsonPro text-4xl text-[color:--color-gray-900]">
+    {month}
   </p>
-  <p>{formattedTime}</p>
 </div>
