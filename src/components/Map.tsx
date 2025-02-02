@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { LINK } from "@/constants/link";
+import { LINK } from "@/constants/constants";
 
 let mapInstance: naver.maps.Map | null = null;
 
@@ -48,5 +48,5 @@ export const Map = ({
     }
   }, [latitude, longitude]);
 
-  return <div id="map" className="aspect-[3/2] w-full" />;
+  return <div id="map" className="aspect-[3/2] w-full mb-8" />;
 };
