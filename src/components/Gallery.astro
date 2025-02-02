@@ -14,7 +14,7 @@ const imagePaths = Object.keys(images).filter((imagePath) => {
     class="container mx-auto grid grid-cols-3 gap-2 md:grid-cols-3"
   >
     {
-      imagePaths.map(async (imagePath) => {
+      imagePaths.map(async (imagePath, index) => {
         let image = images[imagePath]();
         let optimizedImage = await getImage({
           src: image,
@@ -30,7 +30,7 @@ const imagePaths = Object.keys(images).filter((imagePath) => {
           >
             <Image
               src={image}
-              alt={"altText"}
+              alt={`이미지 ${index}`}
               height={350}
               class={
                 "aspect-[2/3] w-full object-cover transition duration-300 ease-in-out"
