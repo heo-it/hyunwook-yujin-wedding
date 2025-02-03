@@ -8,7 +8,9 @@ import NavigationButton from "./NavigationButton.astro";
 ---
 
 <div class="flex flex-col py-10">
-  <p class="text-[17px] text-center text-stone-900 mb-8">오시는 길</p>
+  <p class="text-lg text-center text-[color:--color-gray-900] mb-8">
+    오시는 길
+  </p>
   <Map
     client:only="react"
     latitude={LOCATION.LATITUDE}
@@ -16,9 +18,9 @@ import NavigationButton from "./NavigationButton.astro";
   />
   <div class="px-8 text-sm">
     <div class="flex flex-col gap-4 border-b pb-9">
-      <div class="flex flex-col gap-1">
-        <p>네비게이션</p>
-        <p class="text-stone-400">
+      <div class="flex flex-col gap-2">
+        <p class="text-[color:--color-gray-900] text-[17px]">네비게이션</p>
+        <p class="text-[color:--color-gray-700] text-base font-light">
           원하시는 앱을 선택하시면 길안내가 시작됩니다.
         </p>
       </div>
@@ -43,6 +45,29 @@ import NavigationButton from "./NavigationButton.astro";
         />
       </div>
     </div>
-    {/** TODO - 오시는 길 설명 추가 */}
+    <div class="flex flex-col gap-2 border-b py-9">
+      <p class="text-[color:--color-gray-900] text-[17px]">지하철</p>
+      <p class="text-[color:--color-gray-700] text-base font-light text-base">
+        <span class="text-[#0d347f]">●</span> 1호선 지젤역 1번 출구
+      </p>
+    </div>
+    <div class="flex flex-col gap-2 border-b py-9">
+      <p class="text-[color:--color-gray-900] text-[17px]">버스</p>
+      <p class="text-[color:--color-gray-700] text-base font-light text-base">
+        하차 - 지젤역 2번 출구,
+        <br />
+        더샵지제역센트럴파크3BL 아파트
+      </p>
+    </div>
+    <div class="flex flex-col gap-2 py-9">
+      <p class="text-[color:--color-gray-900] text-[17px]">자가용</p>
+      <p class="text-[color:--color-gray-700] text-base font-light text-base">
+        2시간 무료 주차
+        <br />
+        본관 주차장에서 직원의 안내를 받으시길 바랍니다.
+        <br />
+        출차시 별도 등록이 필요하지 않습니다.
+      </p>
+    </div>
   </div>
 </div>
