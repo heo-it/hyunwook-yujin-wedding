@@ -1,0 +1,31 @@
+---
+interface Props {
+  content: string;
+  className?: string;
+}
+
+const { content, className = "" } = Astro.props;
+---
+
+<div
+  class={`fixed top-8 left-1/2 transform -translate-x-1/2 bg-[#000] text-white text-xs px-3 py-2 rounded invisible transition-opacity duration-200 pointer-events-none z-50 tooltip ${className}`}
+>
+  {content}
+</div>
+
+<script>
+  // 글로벌 스코프에 함수 추가 - 툴팁 표시/숨김 처리
+  window.showTooltip = (tooltipElement: HTMLElement | null) => {
+    if (tooltipElement) {
+      tooltipElement.classList.add("opacity-80", "visible");
+      tooltipElement.classList.remove("opacity-0", "invisible");
+    }
+  };
+
+  window.hideTooltip = (tooltipElement: HTMLElement | null) => {
+    if (tooltipElement) {
+      tooltipElement.classList.remove("opacity-100", "visible");
+      tooltipElement.classList.add("opacity-0", "invisible");
+    }
+  };
+</script>
