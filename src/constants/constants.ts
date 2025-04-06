@@ -1,11 +1,10 @@
 const aiNaverApiClientId = import.meta.env.PUBLIC_AI_NAVER_API_CLIENT_ID ?? "";
 const tMapAppKey = import.meta.env.PUBLIC_T_MAP_APP_KEY ?? "";
 
-// TODO - 예식장 위치 적용
 export const LOCATION = {
-  LATITUDE: 37.022109,
-  LONGITUDE: 127.093061,
-  NAME: "더샵지제역센트럴파크3BL",
+  LATITUDE: 37.06842,
+  LONGITUDE: 127.065693,
+  NAME: "라베아툼 웨딩홀",
 };
 
 export const LINK = {
