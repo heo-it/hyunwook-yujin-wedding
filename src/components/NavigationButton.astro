@@ -1,10 +1,22 @@
 ---
-const { src, alt, link, title } = Astro.props;
+const { src, alt, link, title, variant } = Astro.props as {
+  src: string;
+  alt: string;
+  link: string;
+  title: string;
+  variant: keyof typeof variantClasses;
+};
+
+const variantClasses = {
+  first: "rounded-l-lg border border-gray-200",
+  middle: "border-t border-b border-gray-200", // 왼쪽 border는 생략
+  last: "rounded-r-lg border border-gray-200",
+};
 ---
 
 <astro-greet data-link={link} class="grow shrink basis-0">
   <button
-    class="flex items-center justify-center gap-2 w-full h-[40px] border border-gray-100 rounded-lg"
+    class={`flex items-center justify-center gap-[6px] w-full h-10 text-sm bg-white ${variantClasses[variant]}`}
     data-link={link}
   >
     <img src={src} alt={alt} width={16} height={16} />

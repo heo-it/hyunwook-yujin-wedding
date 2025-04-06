@@ -1,0 +1,31 @@
+---
+import NavigationButton from "./NavigationButton.astro";
+import NaverMap from "@/assets/navermap_Icon.png";
+import KakaoMap from "@/assets/kakaomap_Icon.png";
+import TMap from "@/assets/tmap_Icon.svg";
+import { LINK } from "@/constants/constants";
+---
+
+<div class="flex rounded-lg overflow-hidden w-full">
+  <NavigationButton
+    variant="first"
+    title="네이버 지도"
+    src={NaverMap.src}
+    alt="Naver Map"
+    link={LINK.NAVER_MAP_APP}
+  />
+  <NavigationButton
+    variant="middle"
+    title="카카오맵"
+    src={KakaoMap.src}
+    alt="Kakao Map"
+    link={LINK.KAKAO_MAP_APP}
+  />
+  <NavigationButton
+    variant="last"
+    title="티맵"
+    src={TMap.src}
+    alt="T Map"
+    link={LINK.T_MAP_APP}
+  />
+</div>

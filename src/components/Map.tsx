@@ -48,5 +48,5 @@ export const Map = ({
     }
   }, [latitude, longitude]);
 
-  return <div id="map" className="aspect-[3/2] w-full mb-8" />;
+  return <div id="map" className="w-full aspect-[3/2] rounded-lg" />;
 };

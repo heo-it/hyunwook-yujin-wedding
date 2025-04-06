@@ -1,73 +1,133 @@
 ---
-import NaverMap from "@/assets/navermap_Icon.png";
-import KakaoMap from "@/assets/kakaomap_Icon.png";
-import TMap from "@/assets/tmap_Icon.svg";
-import { LINK, LOCATION } from "@/constants/constants";
+import { LOCATION } from "@/constants/constants";
 import { Map } from "./Map";
-import NavigationButton from "./NavigationButton.astro";
+import MapIcon from "@/assets/map.svg";
+import BusIcon from "@/assets/bus.svg";
+import CarIcon from "@/assets/car.svg";
+import MetroIcon from "@/assets/Metro.svg";
+import CopyButton from "./CopyButton.astro";
+import NavigationButtonGroup from "./NavigationButtonGroup.astro";
 ---
 
-<div class="flex flex-col py-10">
-  <p class="text-lg text-center text-[color:--color-gray-900] mb-8">
-    오시는 길
-  </p>
-  <Map
-    client:only="react"
-    latitude={LOCATION.LATITUDE}
-    longitude={LOCATION.LONGITUDE}
-  />
-  <div class="px-8 text-sm">
-    <div class="flex flex-col gap-4 border-b pb-9">
-      <div class="flex flex-col gap-2">
-        <p class="text-[color:--color-gray-900] text-[17px]">네비게이션</p>
-        <p class="text-[color:--color-gray-700] text-base font-light">
-          원하시는 앱을 선택하시면 길안내가 시작됩니다.
-        </p>
-      </div>
-      <div class="flex gap-2">
-        <NavigationButton
-          title="네이버 지도"
-          src={NaverMap.src}
-          alt="Naver Map"
-          link={LINK.NAVER_MAP_APP}
-        />
-        <NavigationButton
-          title="카카오맵"
-          src={KakaoMap.src}
-          alt="Kakao Map"
-          link={LINK.KAKAO_MAP_APP}
-        />
-        <NavigationButton
-          title="티맵"
-          src={TMap.src}
-          alt="T Map"
-          link={LINK.T_MAP_APP}
-        />
+<div class="flex flex-col items-center gap-4 px-4 pt-4 pb-10 font-Pretendard">
+  <h2 class="text-lg text-center">오시는 길</h2>
+
+  <div class="">
+    <!-- 지도 -->
+    <div class="flex flex-col gap-4">
+      <Map
+        client:only="react"
+        latitude={LOCATION.LATITUDE}
+        longitude={LOCATION.LONGITUDE}
+      />
+      <div class="flex flex-col items-start gap-4 py-1 pb-3">
+        <div class="flex gap-2">
+          <MapIcon width={18} height={18} />
+          <p
+            class="text-[#444447] text-center font-[400] text-[15px] leading-normal"
+          >
+            경기 평택시 경기대로1376번길 22
+          </p>
+          <CopyButton text="복사" successMessage="주소가 복사되었습니다." />
+        </div>
+        <NavigationButtonGroup />
       </div>
     </div>
-    <div class="flex flex-col gap-2 border-b py-9">
-      <p class="text-[color:--color-gray-900] text-[17px]">지하철</p>
-      <p class="text-[color:--color-gray-700] text-base font-light text-base">
-        <span class="text-[#0d347f]">●</span> 1호선 지젤역 1번 출구
-      </p>
-    </div>
-    <div class="flex flex-col gap-2 border-b py-9">
-      <p class="text-[color:--color-gray-900] text-[17px]">버스</p>
-      <p class="text-[color:--color-gray-700] text-base font-light text-base">
-        하차 - 지젤역 2번 출구,
-        <br />
-        더샵지제역센트럴파크3BL 아파트
-      </p>
-    </div>
-    <div class="flex flex-col gap-2 py-9">
-      <p class="text-[color:--color-gray-900] text-[17px]">자가용</p>
-      <p class="text-[color:--color-gray-700] text-base font-light text-base">
-        2시간 무료 주차
-        <br />
-        본관 주차장에서 직원의 안내를 받으시길 바랍니다.
-        <br />
-        출차시 별도 등록이 필요하지 않습니다.
-      </p>
+
+    <div class="w-full h-px bg-[#F0F0F3] my-4"></div>
+
+    <!-- 교통 정보 -->
+    <div class="">
+      <!-- 지하철 -->
+      <div class="flex flex-col items-start gap-2">
+        <div class="flex items-center gap-1">
+          <MetroIcon width={20} height={20} />
+          <h5 class="text-[#444447] text-[16px] font-medium">지하철</h5>
+          <div
+            class="flex items-center justify-center w-4 h-4 rounded-full border border-[rgba(0,0,0,0.10)] bg-[#263B96]"
+          >
+            <span
+              class="text-white text-center text-[12px] font-bold leading-5"
+            >
+              1
+            </span>
+          </div>
+          <span class="text-[#444447] text-[14px] font-medium">송탄역 하차</span
+          >
+        </div>
+        <ul class="flex flex-col items-start gap-1 pt-1 pl-8 self-stretch">
+          <li
+            class="list-disc text-[#444447] text-[15px] font-normal leading-5"
+          >
+            택시 이용 5분 거리
+          </li>
+          <li
+            class="list-disc text-[#444447] text-[15px] font-normal leading-5"
+          >
+            버스 이용 1311(구 1-1) 송탄출장소 하차
+          </li>
+        </ul>
+      </div>
+
+      <div class="w-full h-px bg-[#F0F0F3] my-4"></div>
+
+      <!-- 버스 -->
+      <div class="flex flex-col items-start gap-2">
+        <div class="flex items-center gap-1">
+          <BusIcon width={20} height={20} />
+          <h5 class="text-[#444447] text-[16px] font-medium">버스</h5>
+        </div>
+        <ul class="flex flex-col items-start gap-1 pt-1 pl-8 self-stretch">
+          <li
+            class="list-disc text-[#444447] text-[15px] font-normal leading-5"
+          >
+            시내버스 1311(구 1-1), 1522(구 2-2)
+          </li>
+        </ul>
+      </div>
+
+      <div class="w-full h-px bg-[#F0F0F3] my-4"></div>
+
+      <!-- 자가용 -->
+      <div class="flex flex-col items-start gap-2">
+        <div class="flex items-center gap-1">
+          <CarIcon width={20} height={20} />
+          <h5 class="text-[#444447] text-[16px] font-medium">자가용</h5>
+        </div>
+        <ul class="flex flex-col items-start gap-1 pt-1 pl-8 self-stretch">
+          <li class="list-disc text-[#444447] leading-[22px]">
+            <p class="text-[15px] font-medium">경부고속도로(서울 → 부산) :</p>
+            <p class="text-[14px] font-normal">
+              오산IC 진입 → 송탄출장소 삼거리에서 유턴 후 첫 번째 골목 진입
+            </p>
+          </li>
+          <li class="list-disc text-[#444447] leading-[22px]">
+            <p class="text-[15px] font-medium">경부고속도로(부산 → 서울) :</p>
+            <p class="text-[14px] font-normal">
+              송탄IC 진입 → 송탄출장소 삼거리에서 우회전 후 첫 번째 골목 진입
+            </p>
+          </li>
+          <li class="list-disc text-[#444447] leading-[22px]">
+            <p class="text-[15px] font-medium">서해안고속도로 :</p>
+            <p class="text-[14px] font-normal">
+              서평택 JC 송탄IC 진입 → 송탄출장소 삼거리에서 유턴 후 첫 번째 골목
+              진입
+            </p>
+          </li>
+          <li class="list-disc text-[#444447] leading-[22px]">
+            <p class="text-[15px] font-medium">1번 국도 (서울 → 천안) :</p>
+            <p class="text-[14px] font-normal">
+              송탄출장소 삼거리에서 유턴 후 첫 번째 골목 진입
+            </p>
+          </li>
+          <li class="list-disc text-[#444447] leading-[22px]">
+            <p class="text-[15px] font-medium">1번 국도 (천안 → 서울) :</p>
+            <p class="text-[14px] font-normal">
+              송탄출장소 삼거리에서 우회전 후 첫 번째 골목 진입
+            </p>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

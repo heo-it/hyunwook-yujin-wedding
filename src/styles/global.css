@@ -1,3 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    margin: 0;
+    font-family: "Pretendard Variable", Pretendard, serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+}
+
 @font-face {
   font-family: "SUIT Variable";
   font-weight: 100 900;
@@ -14,10 +28,10 @@
 }
 
 :root {
-  --color-primary: #1f1f1f;
+  --color-primary: #171719;
   --color-gray-900: #191919;
   --color-gray-700: #4c4c4c;
   --color-gray-500: #979ca1;
-  --color-secondary: #595959;
+  --color-secondary: rgba(55, 56, 60, 0.61);
   --color-point: #e75e5e;
 }

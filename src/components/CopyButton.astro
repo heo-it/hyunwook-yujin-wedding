@@ -1,0 +1,58 @@
+---
+import Tooltip from "./Tooltip.astro";
+
+interface Props {
+  text: string;
+  copyText?: string;
+  successMessage?: string;
+  className?: string;
+}
+
+const {
+  text,
+  copyText = text,
+  successMessage = "복사되었습니다!",
+} = Astro.props;
+---
+
+<div class="relative inline-block">
+  <button
+    type="button"
+    class="cursor-pointer text-[#0068C3] text-center font-Pretendard font-normal text-[15px] leading-normal"
+    data-copy-text={copyText}
+    aria-label={`${text} 복사하기`}
+  >
+    {text}
+  </button>
+  <Tooltip content={successMessage} />
+</div>
+
+<script>
+  // 모든 복사 버튼에 이벤트 리스너 추가
+  document.addEventListener("DOMContentLoaded", () => {
+    const copyButtons = document.querySelectorAll("[data-copy-text]");
+
+    copyButtons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        const textToCopy =
+          button.getAttribute("data-copy-text") || button.textContent || "";
+        const tooltip = button.nextElementSibling;
+
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+
+          // 툴팁 표시
+          if (tooltip && tooltip.classList.contains("tooltip")) {
+            window.showTooltip(tooltip as HTMLElement);
+
+            setTimeout(() => {
+              window.hideTooltip(tooltip as HTMLElement);
+            }, 2000);
+          }
+        } catch (err) {
+          console.error("텍스트 복사 실패:", err);
+        }
+      });
+    });
+  });
+</script>
