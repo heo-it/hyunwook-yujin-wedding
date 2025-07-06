@@ -1,0 +1,67 @@
+---
+import Tooltip from "@/components/Tooltip.astro";
+import CopyIcon from "@/assets/copy.svg";
+const {
+  bank,
+  accountNumber,
+  owner,
+  copyText = accountNumber,
+  successMessage = "복사되었습니다!",
+} = Astro.props;
+---
+
+<div class="flex flex-col gap-1 px-4 py-3">
+  <div class="flex justify-between items-center">
+    <span class="text-sm text-[#444447]">
+      {bank} | {accountNumber}
+    </span>
+    <button
+      type="button"
+      class="flex items-center gap-1 px-2 py-1 border border-[rgba(0,0,0,0.10)] rounded-md text-xs"
+      data-copy-text={copyText}
+    >
+      <img
+        src={CopyIcon.src}
+        alt="복사 아이콘"
+        width={16}
+        height={16}
+        color="#444447"
+      />
+      복사
+    </button>
+    <Tooltip content={successMessage} />
+  </div>
+  <div class="flex justify-between items-center">
+    <span class="text-sm text-gray-500">{owner}</span>
+  </div>
+</div>
+
+<script>
+  // 모든 복사 버튼에 이벤트 리스너 추가
+  document.addEventListener("DOMContentLoaded", () => {
+    const copyButtons = document.querySelectorAll("[data-copy-text]");
+
+    copyButtons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        const textToCopy =
+          button.getAttribute("data-copy-text") || button.textContent || "";
+        const tooltip = button.nextElementSibling;
+
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+
+          // 툴팁 표시
+          if (tooltip && tooltip.classList.contains("tooltip")) {
+            window.showTooltip(tooltip as HTMLElement);
+
+            setTimeout(() => {
+              window.hideTooltip(tooltip as HTMLElement);
+            }, 2000);
+          }
+        } catch (err) {
+          console.error("텍스트 복사 실패:", err);
+        }
+      });
+    });
+  });
+</script>
