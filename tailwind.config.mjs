@@ -7,6 +7,7 @@ export default {
       CrimsonPro: ["Crimson Pro", "serif"],
       Pretendard: ["Pretendard Variable"],
       AlexBrush: ["Alex Brush", "cursive"],
+      Italiana: ["Italiana", "serif"],
     },
     backgroundImage: {
       "fade-to-white": "linear-gradient(hsla(0, 0%, 100%, 0), #fff)",
