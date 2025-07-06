@@ -3,13 +3,21 @@ import { Image } from "astro:assets";
 import MainImage from "/src/assets/gallery/main_cover.jpg";
 ---
 
-<div class="flex flex-col items-center justify-center gap-8">
+<div class="relative flex flex-col items-center justify-center gap-8">
   <Image
     class="object-cover h-[calc(100svh-120px)]"
     src={MainImage}
     alt="대표 이미지"
   />
-  <div class="absolute bottom-16 left-0 w-full pb-8 text-[color:--color-point]">
+  <span
+    class="absolute top-1 left-2 font-Italiana font-semibold text-white text-sm"
+    >HYUNWOOK</span
+  >
+  <span
+    class="absolute top-1 right-2 font-Italiana font-semibold text-white text-sm"
+    >YUJIN</span
+  >
+  <div class="absolute bottom-8 left-0 w-full pb-8 text-[color:--color-point]">
     <div
       class="font-AlexBrush flex flex-col items-center justify-center w-full text-7xl font-normal"
     >
@@ -21,7 +29,7 @@ import MainImage from "/src/assets/gallery/main_cover.jpg";
     </div>
   </div>
   <section
-    class="fade-in flex flex-col items-center justify-center gap-1 font-extralight text-[color:--color-gray-500]/10"
+    class="fade-in flex flex-col items-center justify-center gap-1 text-[color:--color-gray-500]/10"
   >
     <p>2025년 11월 1일 토요일 오전 11시</p>
     <p class="font-CrimsonPro text-xl">La Beatum</p>
