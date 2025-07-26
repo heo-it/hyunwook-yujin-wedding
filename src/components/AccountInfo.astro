@@ -3,61 +3,69 @@ import AccountItem from "./AccountItem.astro";
 ---
 
 <div
-  class="flex flex-col items-center gap-4 my-20 font-Pretendard text-[#444447]"
+  class="flex flex-col items-center gap-4 my-16 font-Pretendard text-[#444447]"
 >
   <h2 class="font-Italiana text-xl">CONGRATS!</h2>
-  <div class="flex flex-col w-full min-w-[100px] mb-4 px-10">
-    <p
-      class="relative flex w-full h-12 px-4 justify-center items-center gap-1 self-stretch"
+  <div class="w-full min-w-[100px] px-8">
+    <div
+      class="flex flex-col rounded-xl border border-gray-200 overflow-hidden"
     >
-      🤵🏻‍♂️ 신랑측&nbsp;&nbsp;
-    </p>
-    <div class="w-full bg-white border-t border-[rgba(0,0,0,0.10)]">
-      <AccountItem
-        bank="신한은행"
-        accountNumber="110-340-953468"
-        owner="최현욱"
-        successMessage="계좌번호가 복사되었습니다!"
-      />
-      <AccountItem
-        bank="농협"
-        accountNumber="205018-51-085304"
-        owner="최덕근"
-        successMessage="계좌번호가 복사되었습니다!"
-      />
-      <AccountItem
-        bank="국민은행"
-        accountNumber="242-24-0127-221"
-        owner="나정아"
-        successMessage="계좌번호가 복사되었습니다!"
-      />
+      <p
+        class="relative flex w-full h-12 px-4 justify-center items-center gap-1 self-stretch"
+      >
+        🤵🏻‍♂️ 신랑측&nbsp;&nbsp;
+      </p>
+      <div class="w-full bg-white border-t border-[rgba(0,0,0,0.10)]">
+        <AccountItem
+          bank="신한은행"
+          accountNumber="110-340-953468"
+          owner="최현욱"
+          successMessage="계좌번호가 복사되었습니다!"
+        />
+        <AccountItem
+          bank="농협"
+          accountNumber="205018-51-085304"
+          owner="최덕근"
+          successMessage="계좌번호가 복사되었습니다!"
+        />
+        <AccountItem
+          bank="국민은행"
+          accountNumber="242-24-0127-221"
+          owner="나정아"
+          successMessage="계좌번호가 복사되었습니다!"
+        />
+      </div>
     </div>
   </div>
-  <div class="flex flex-col w-full min-w-[100px] px-10">
-    <p
-      class="relative flex w-full h-12 px-4 justify-center items-center gap-1 self-stretch"
+  <div class="w-full min-w-[100px] mb-4 px-8">
+    <div
+      class="flex flex-col rounded-xl border border-gray-200 overflow-hidden"
     >
-      👰🏻‍♀️ 신부측&nbsp;&nbsp;
-    </p>
-    <div class="w-full bg-white border-t border-[rgba(0,0,0,0.10)]">
-      <AccountItem
-        bank="우리은행"
-        accountNumber="1002-464-510172"
-        owner="허유진"
-        successMessage="계좌번호가 복사되었습니다!"
-      />
-      <AccountItem
-        bank="국민은행"
-        accountNumber="207-21-0542-130"
-        owner="허명구"
-        successMessage="계좌번호가 복사되었습니다!"
-      />
-      <AccountItem
-        bank="IBK기업은행"
-        accountNumber="353-115164-01-011"
-        owner="김향단"
-        successMessage="계좌번호가 복사되었습니다!"
-      />
+      <p
+        class="relative flex w-full h-12 px-4 justify-center items-center gap-1 self-stretch"
+      >
+        👰🏻‍♀️ 신부측&nbsp;&nbsp;
+      </p>
+      <div class="w-full bg-white border-t border-[rgba(0,0,0,0.10)]">
+        <AccountItem
+          bank="우리은행"
+          accountNumber="1002-464-510172"
+          owner="허유진"
+          successMessage="계좌번호가 복사되었습니다!"
+        />
+        <AccountItem
+          bank="국민은행"
+          accountNumber="207-21-0542-130"
+          owner="허명구"
+          successMessage="계좌번호가 복사되었습니다!"
+        />
+        <AccountItem
+          bank="IBK기업은행"
+          accountNumber="353-115164-01-011"
+          owner="김향단"
+          successMessage="계좌번호가 복사되었습니다!"
+        />
+      </div>
     </div>
   </div>
 </div>
