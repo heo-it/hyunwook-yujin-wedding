@@ -26,6 +26,10 @@ import { LINK } from "@/constants/constants";
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap"
     />
+    <script
+      type="text/javascript"
+      src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${import.meta.env.PUBLIC_KAKAO_MAP_APP_KEY}`}
+    ></script>
   </head>
   <body>
     <slot />
