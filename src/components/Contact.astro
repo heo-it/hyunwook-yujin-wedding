@@ -1,0 +1,25 @@
+---
+import ContactItem from "./ContactItem.astro";
+---
+
+<div
+  class="flex flex-col items-center gap-4 my-16 font-Pretendard text-[#444447]"
+>
+  <h2 class="font-Italiana text-xl">CONTACT US!</h2>
+  <div class="flex flex-col gap-4 w-full min-w-[100px] px-8">
+    <div
+      class="flex flex-col rounded-xl border border-gray-200 overflow-hidden"
+    >
+      <ContactItem title="최현욱" value="010-2731-0491" />
+      <ContactItem title="최덕근" value="010-2702-0491" />
+      <ContactItem title="나정아" value="010-7110-0491" />
+    </div>
+    <div
+      class="flex flex-col rounded-xl border border-gray-200 overflow-hidden"
+    >
+      <ContactItem title="허유진" value="010-2940-7595" />
+      <ContactItem title="허명구" value="010-5074-7595" />
+      <ContactItem title="김향단" value="010-5080-7595" />
+    </div>
+  </div>
+</div>

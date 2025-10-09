@@ -1,0 +1,24 @@
+---
+import PhoneIcon from "@/assets/phone.svg";
+import MessageIcon from "@/assets/message.svg";
+
+const { title, value } = Astro.props;
+---
+
+<div class="flex items-center gap-1 justify-between py-3 px-4">
+  <span class="text-sm text-[#444447]">{title}</span>
+  <div class="flex gap-1">
+    <a
+      href={`tel:${value}`}
+      class="flex items-center gap-1 px-2 py-1 rounded-md transition-colors hover:bg-gray-100 active:bg-gray-200"
+    >
+      <img src={PhoneIcon.src} alt="Phone" width={20} height={20} />
+    </a>
+    <a
+      href={`sms:${value}`}
+      class="flex items-center gap-1 px-2 py-1 rounded-md transition-colors hover:bg-gray-100 active:bg-gray-200"
+    >
+      <img src={MessageIcon.src} alt="Message" width={20} height={20} />
+    </a>
+  </div>
+</div>
