@@ -10,12 +10,31 @@ import AccountItem from "./AccountItem.astro";
     <div
       class="flex flex-col rounded-xl border border-gray-200 overflow-hidden"
     >
-      <p
-        class="relative flex w-full h-12 px-4 justify-center items-center gap-1 self-stretch"
+      <button
+        class="relative flex w-full h-12 px-4 justify-center items-center gap-1 self-stretch cursor-pointer hover:bg-gray-50 transition-colors"
+        data-toggle="groom-account"
       >
-        🤵🏻‍♂️ 신랑측&nbsp;&nbsp;
-      </p>
-      <div class="w-full bg-white border-t border-[rgba(0,0,0,0.10)]">
+        <span>🤵🏻‍♂️ 신랑측</span>
+        <svg
+          class="chevron transition-transform duration-300"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 9L12 15L18 9"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
+      <div
+        id="groom-account"
+        class="w-full bg-white border-t border-[rgba(0,0,0,0.10)] hidden"
+      >
         <AccountItem
           bank="신한은행"
           accountNumber="110-340-953468"
@@ -41,12 +60,31 @@ import AccountItem from "./AccountItem.astro";
     <div
       class="flex flex-col rounded-xl border border-gray-200 overflow-hidden"
     >
-      <p
-        class="relative flex w-full h-12 px-4 justify-center items-center gap-1 self-stretch"
+      <button
+        class="relative flex w-full h-12 px-4 justify-center items-center gap-1 self-stretch cursor-pointer hover:bg-gray-50 transition-colors"
+        data-toggle="bride-account"
       >
-        👰🏻‍♀️ 신부측&nbsp;&nbsp;
-      </p>
-      <div class="w-full bg-white border-t border-[rgba(0,0,0,0.10)]">
+        <span>👰🏻‍♀️ 신부측</span>
+        <svg
+          class="chevron transition-transform duration-300"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 9L12 15L18 9"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
+      <div
+        id="bride-account"
+        class="w-full bg-white border-t border-[rgba(0,0,0,0.10)] hidden"
+      >
         <AccountItem
           bank="우리은행"
           accountNumber="1002-464-510172"
@@ -69,3 +107,24 @@ import AccountItem from "./AccountItem.astro";
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleButtons = document.querySelectorAll("[data-toggle]");
+
+    toggleButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const targetId = button.getAttribute("data-toggle");
+        if (!targetId) return;
+
+        const targetElement = document.getElementById(targetId);
+        const chevron = button.querySelector(".chevron");
+
+        if (targetElement) {
+          targetElement.classList.toggle("hidden");
+          chevron?.classList.toggle("rotate-180");
+        }
+      });
+    });
+  });
+</script>
