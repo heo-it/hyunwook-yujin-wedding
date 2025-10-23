@@ -1,0 +1,82 @@
+---
+export interface Props {
+  isOpen: boolean;
+  title?: string;
+  message: string;
+  onClose: () => void;
+}
+
+const { isOpen, title, message, onClose } = Astro.props;
+---
+
+{isOpen && (
+  <div class="font-Pretendard fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white rounded-xl border border-gray-200 p-6 mx-4 max-w-md w-full font-Pretendard text-[#444447] relative">
+      <!-- 닫기 버튼 -->
+      <button 
+        id="closeModal"
+        class="absolute top-4 right-4 p-1 hover:bg-gray-100 rounded-full transition-colors z-10"
+        aria-label="닫기"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m7 7l10 10M7 17L17 7" stroke-width="1"/></svg>
+      </button>
+      
+      <!-- 제목 (선택사항) -->
+      {title && (
+        <h3 class="font-Italiana text-xl mb-4 text-center">🤍 NOTICE 🤍</h2>
+      )}
+      
+      <!-- 메시지 -->
+      <p class="text-center leading-relaxed whitespace-pre-wrap break-keep" set:html={message}></p>
+    </div>
+  </div>
+)}
+
+<style>
+  /* 모달 애니메이션을 위한 스타일 */
+  .modal-enter {
+    animation: modalEnter 0.2s ease-out;
+  }
+  
+  .modal-exit {
+    animation: modalExit 0.2s ease-in;
+  }
+  
+  @keyframes modalEnter {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes modalExit {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+  }
+</style>
+
+<script>
+  // 닫기 버튼 클릭 이벤트
+  document.addEventListener('DOMContentLoaded', () => {
+    const closeButton = document.getElementById('closeModal');
+    if (closeButton) {
+      closeButton.addEventListener('click', () => {
+        // 모달이 포함된 컨테이너를 찾아서 숨김
+        const modalContainer = closeButton.closest('[id^="modal"]') || closeButton.closest('.fixed');
+        if (modalContainer) {
+          modalContainer.style.display = 'none';
+        }
+      });
+    }
+  });
+</script>
